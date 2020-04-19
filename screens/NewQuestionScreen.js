@@ -1,14 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-export default function HomeScreen(props) {
+export default function NewQuestionScreen(props) {
   const { navigation } = props;
   return (
     <View style={styles.container}>
-      <Button
-      title="Go to Quiz "
-      onPress={() => navigation.navigate('Quiz')}
-      />
     </View>
   );
 }

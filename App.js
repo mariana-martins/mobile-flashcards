@@ -5,26 +5,26 @@ import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
-import BottomTabNavigator from './navigation/BottomTabNavigator';
-import useLinking from './navigation/useLinking';
+import HomeScreen from "./screens/HomeScreen";
+import NewDeckScreen from "./screens/NewDeckScreen";
+import NewQuestionScreen from "./screens/NewQuestionScreen";
+import QuizScreen from "./screens/QuizScreen";
+import ViewDeckScreen from "./screens/ViewDeckScreen";
 
 const Stack = createStackNavigator();
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
-  const [initialNavigationState, setInitialNavigationState] = React.useState();
-  const containerRef = React.useRef();
-  const { getInitialState } = useLinking(containerRef);
 
+  const stackScreenOptions = {
+    headerTintColor: 'white',
+    headerStyle: { backgroundColor: 'tomato' },
+  };
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHide();
-
-        // Load our initial navigation state
-        setInitialNavigationState(await getInitialState());
 
         // Load fonts
         await Font.loadAsync({
@@ -49,9 +49,33 @@ export default function App(props) {
     return (
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
+        <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
+            <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={stackScreenOptions}
+            />
+            <Stack.Screen
+              name="New Deck"
+              component={NewDeckScreen}
+              options={stackScreenOptions}
+            />
+            <Stack.Screen
+                name="New Question"
+                component={NewQuestionScreen}
+                options={stackScreenOptions}
+            />
+            <Stack.Screen
+                name="Quiz"
+                component={QuizScreen}
+                options={stackScreenOptions}
+            />
+            <Stack.Screen
+                name="View Deck"
+                component={ViewDeckScreen}
+                options={stackScreenOptions}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </View>
