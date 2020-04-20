@@ -5,10 +5,7 @@ export default function HomeScreen(props) {
   const { navigation } = props;
   return (
     <View style={styles.container}>
-      <Button
-      title="Go to Quiz "
-      onPress={() => navigation.navigate('Quiz')}
-      />
+      <Button title="Go to Quiz" onPress={() => navigation.navigate('Quiz')} />
     </View>
   );
 }

@@ -5,11 +5,11 @@ import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from "./screens/HomeScreen";
-import NewDeckScreen from "./screens/NewDeckScreen";
-import NewQuestionScreen from "./screens/NewQuestionScreen";
-import QuizScreen from "./screens/QuizScreen";
-import ViewDeckScreen from "./screens/ViewDeckScreen";
+import HomeScreen from './screens/HomeScreen';
+import NewDeckScreen from './screens/NewDeckScreen';
+import NewQuestionScreen from './screens/NewQuestionScreen';
+import QuizScreen from './screens/QuizScreen';
+import ViewDeckScreen from './screens/ViewDeckScreen';
 
 const Stack = createStackNavigator();
 
@@ -52,9 +52,9 @@ export default function App(props) {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
-                name="Home"
-                component={HomeScreen}
-                options={stackScreenOptions}
+              name="Home"
+              component={HomeScreen}
+              options={stackScreenOptions}
             />
             <Stack.Screen
               name="New Deck"
@@ -62,19 +62,19 @@ export default function App(props) {
               options={stackScreenOptions}
             />
             <Stack.Screen
-                name="New Question"
-                component={NewQuestionScreen}
-                options={stackScreenOptions}
+              name="New Question"
+              component={NewQuestionScreen}
+              options={stackScreenOptions}
             />
             <Stack.Screen
-                name="Quiz"
-                component={QuizScreen}
-                options={stackScreenOptions}
+              name="Quiz"
+              component={QuizScreen}
+              options={stackScreenOptions}
             />
             <Stack.Screen
-                name="View Deck"
-                component={ViewDeckScreen}
-                options={stackScreenOptions}
+              name="View Deck"
+              component={ViewDeckScreen}
+              options={stackScreenOptions}
             />
           </Stack.Navigator>
         </NavigationContainer>
