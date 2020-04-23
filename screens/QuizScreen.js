@@ -59,7 +59,7 @@ export default function QuizScreen(props) {
       <Text>Total: {deck.questions.length}</Text>
       <Text>
         Correct: {correctAnswers} (
-        {(100 * correctAnswers) / deck.questions.length} %)
+        {((100 * correctAnswers) / deck.questions.length).toFixed(2)} %)
       </Text>
       <Button
         title="Go back to Home"
