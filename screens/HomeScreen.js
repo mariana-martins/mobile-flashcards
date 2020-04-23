@@ -26,13 +26,13 @@ export default function HomeScreen(props) {
     <View style={styles.container}>
       <FlatList
         data={decks}
-        keyExtractor={(item) => item.name}
+        keyExtractor={(item) => item.title}
         renderItem={({ item }) => (
           <Button
-            title={`${item.name} (${item.questions.length} items)`}
+            title={`${item.title} (${item.questions.length} items)`}
             onPress={() =>
               navigation.navigate('View Deck', {
-                deckName: item.name,
+                title: item.title,
               })
             }
           />
