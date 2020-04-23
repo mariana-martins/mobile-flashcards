@@ -35,7 +35,7 @@ export default function NewQuestionScreen(props) {
       <Button
         title="Add New Question"
         onPress={addQuestion}
-        disabled={question === '' && answer === ''}
+        disabled={question === '' || answer === ''}
       />
     </View>
   );
