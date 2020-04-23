@@ -1,11 +1,47 @@
-import * as React from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Button, FlatList, Text } from 'react-native';
+import { getDecks } from '../utils/api';
 
 export default function HomeScreen(props) {
   const { navigation } = props;
+
+  const [isLoading, setLoading] = useState(true);
+  const [decks, setDecks] = useState([]);
+
+  useEffect(() => {
+    getDecks()
+      .then((data) => setDecks(data))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
-      <Button title="Go to Quiz" onPress={() => navigation.navigate('Quiz')} />
+      <FlatList
+        data={decks}
+        keyExtractor={(item) => item.name}
+        renderItem={({ item }) => (
+          <Button
+            title={`${item.name} (${item.questions.length} items)`}
+            onPress={() =>
+              navigation.navigate('View Deck', {
+                deckName: item.name,
+              })
+            }
+          />
+        )}
+      />
+      <Button
+        title="Add New Deck"
+        onPress={() => navigation.navigate('New Deck')}
+      />
     </View>
   );
 }
