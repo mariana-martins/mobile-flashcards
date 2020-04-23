@@ -12,7 +12,7 @@ export default function HomeScreen(props) {
     getDecks()
       .then((data) => setDecks(data))
       .finally(() => setLoading(false));
-  }, [route.params?.operation]);
+  }, [route.params?.timestamp]);
 
   if (isLoading) {
     return (

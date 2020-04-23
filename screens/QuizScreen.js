@@ -16,7 +16,7 @@ export default function QuizScreen(props) {
     getDeck(title)
       .then((data) => setDeck(data))
       .finally(() => setLoading(false));
-  }, [route.params?.operation]);
+  }, [route.params?.timestamp]);
 
   const answerQuestion = (answer) => {
     if (answer === true) {
@@ -63,9 +63,7 @@ export default function QuizScreen(props) {
       </Text>
       <Button
         title="Go back to Home"
-        onPress={() =>
-          navigation.navigate('Home', { operation: `Finished quiz ${title}` })
-        }
+        onPress={() => navigation.navigate('Home', { timestamp: Date.now() })}
       />
     </View>
   );

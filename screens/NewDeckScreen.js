@@ -10,7 +10,7 @@ export default function NewDeckScreen(props) {
   const addDeck = () => {
     saveDeckTitle(title).then(() =>
       navigation.navigate('Home', {
-        operation: `Added new deck called '${title}'`,
+        timestamp: Date.now(),
       })
     );
   };

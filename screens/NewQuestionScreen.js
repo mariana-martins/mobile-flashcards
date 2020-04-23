@@ -13,7 +13,7 @@ export default function NewQuestionScreen(props) {
     addCardToDeck(title, question, answer).then(() =>
       navigation.navigate('View Deck', {
         title,
-        operation: `Added new question '${question}' = '${answer}'`,
+        timestamp: Date.now(),
       })
     );
   };
