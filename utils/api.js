@@ -1,7 +1,7 @@
 import { _addCardToDeck, _getDeck, _getDecks, _saveDeckTitle } from './_DATA';
 
-export async function getDecks() {
-  return await _getDecks();
+export function getDecks() {
+  return _getDecks();
 }
 export async function getDeck(id) {
   return await _getDeck(id);

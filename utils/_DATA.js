@@ -1,17 +1,20 @@
-import AsyncStorage from '@react-native-community/async-storage';
+import { AsyncStorage } from 'react-native';
 
 const KEY = 'mobile-flashcards';
 
 async function _get() {
-  return (await AsyncStorage.getItem(KEY)) || {};
+  const data = (await AsyncStorage.getItem(KEY)) || '{}';
+  return JSON.parse(data);
 }
 
 async function _append(key, value) {
   const data = await _get();
-  await AsyncStorage.setItem({
-    ...data,
-    [key]: value,
-  });
+  await AsyncStorage.setItem(
+    JSON.stringify({
+      ...data,
+      [key]: value,
+    })
+  );
 }
 
 export async function _getDecks() {
