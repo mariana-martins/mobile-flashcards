@@ -3,12 +3,12 @@ import { _addCardToDeck, _getDeck, _getDecks, _saveDeckTitle } from './_DATA';
 export function getDecks() {
   return _getDecks();
 }
-export async function getDeck(id) {
-  return await _getDeck(id);
+export function getDeck(id) {
+  return _getDeck(id);
 }
-export async function saveDeckTitle(title) {
-  await _saveDeckTitle(title);
+export function saveDeckTitle(title) {
+  return _saveDeckTitle(title);
 }
-export async function addCardToDeck(title, question, answer) {
-  await _addCardToDeck(title, { question, answer });
+export function addCardToDeck(title, question, answer) {
+  return _addCardToDeck(title, { question, answer });
 }

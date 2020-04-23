@@ -9,7 +9,9 @@ async function _get() {
 
 async function _append(key, value) {
   const data = await _get();
-  await AsyncStorage.setItem(
+  console.log('SAVE', key, value);
+  return await AsyncStorage.setItem(
+    KEY,
     JSON.stringify({
       ...data,
       [key]: value,
@@ -25,12 +27,12 @@ export async function _getDeck(id) {
   const data = await _get();
   return data[id];
 }
-export async function _saveDeckTitle(title) {
-  await _append(title, { title, questions: [] });
+export function _saveDeckTitle(title) {
+  return _append(title, { title, questions: [] });
 }
 export async function _addCardToDeck(title, card) {
   const deck = await _getDeck(title);
-  await _append(title, {
+  return await _append(title, {
     ...deck,
     questions: [...deck.questions, card],
   });
