@@ -13,7 +13,7 @@ export default function ViewDeckScreen(props) {
     getDeck(title)
       .then((data) => setDeck(data))
       .finally(() => setLoading(false));
-  }, []);
+  }, [route.params?.operation]);
 
   if (isLoading) {
     return (

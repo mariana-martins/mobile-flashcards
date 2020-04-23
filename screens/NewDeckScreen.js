@@ -8,7 +8,11 @@ export default function NewDeckScreen(props) {
   const [title, setTitle] = useState('');
 
   const addDeck = () => {
-    saveDeckTitle(title).then(() => navigation.navigate('Home'));
+    saveDeckTitle(title).then(() =>
+      navigation.navigate('Home', {
+        operation: `Added new deck called '${title}'`,
+      })
+    );
   };
 
   return (

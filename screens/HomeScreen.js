@@ -3,7 +3,7 @@ import { StyleSheet, View, Button, FlatList, Text } from 'react-native';
 import { getDecks } from '../utils/api';
 
 export default function HomeScreen(props) {
-  const { navigation } = props;
+  const { navigation, route } = props;
 
   const [isLoading, setLoading] = useState(true);
   const [decks, setDecks] = useState([]);
@@ -12,7 +12,7 @@ export default function HomeScreen(props) {
     getDecks()
       .then((data) => setDecks(data))
       .finally(() => setLoading(false));
-  }, []);
+  }, [route.params?.operation]);
 
   if (isLoading) {
     return (
