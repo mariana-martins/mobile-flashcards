@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Button, FlatList, Text } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import { getDecks } from '../utils/api';
 import { StyledButton } from '../components/StyledButton';
+import { StyledView } from '../components/StyledView';
+import { Title } from '../components/StyledText';
 
 export default function HomeScreen(props) {
   const { navigation, route } = props;
@@ -17,20 +19,20 @@ export default function HomeScreen(props) {
 
   if (isLoading) {
     return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
-      </View>
+      <StyledView>
+        <Title>Loading...</Title>
+      </StyledView>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <StyledView style={styles.view}>
       <FlatList
         data={decks}
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => (
           <StyledButton
-            style={{ margin: 5, backgroundColor: '#ff6363' }}
+            style={styles.flatItemButton}
             title={`${item.title} (${item.questions.length} items)`}
             onPress={() =>
               navigation.navigate('View Deck', {
@@ -43,15 +45,17 @@ export default function HomeScreen(props) {
       <StyledButton
         title="Add New Deck"
         onPress={() => navigation.navigate('New Deck')}
-        color={'#000'}
       />
-    </View>
+    </StyledView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+  flatItemButton: {
+    margin: 5,
+    backgroundColor: '#ff6363',
+  },
+  view: {
+    padding: 0,
   },
 });
