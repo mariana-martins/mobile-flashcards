@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { addCardToDeck } from '../utils/api';
+import { StyledView } from '../components/StyledView';
+import { Title } from '../components/StyledText';
+import { StyledTextInput } from '../components/StyledTextInput';
+import { StyledButton } from '../components/StyledButton';
 
 export default function NewQuestionScreen(props) {
   const { navigation, route } = props;
@@ -19,31 +22,22 @@ export default function NewQuestionScreen(props) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Question?</Text>
-      <TextInput
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+    <StyledView>
+      <Title>Question?</Title>
+      <StyledTextInput
         onChangeText={(text) => setQuestion(text)}
         value={question}
       />
-      <Text>Answer?</Text>
-      <TextInput
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+      <Title>Answer?</Title>
+      <StyledTextInput
         onChangeText={(text) => setAnswer(text)}
         value={answer}
       />
-      <Button
+      <StyledButton
         title="Add New Question"
         onPress={addQuestion}
         disabled={question === '' || answer === ''}
       />
-    </View>
+    </StyledView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
