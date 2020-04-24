@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Button, FlatList, Text } from 'react-native';
 import { getDecks } from '../utils/api';
+import { StyledButton } from '../components/StyledButton';
 
 export default function HomeScreen(props) {
   const { navigation, route } = props;
@@ -28,7 +29,8 @@ export default function HomeScreen(props) {
         data={decks}
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => (
-          <Button
+          <StyledButton
+            style={{ margin: 5, backgroundColor: '#ff6363' }}
             title={`${item.title} (${item.questions.length} items)`}
             onPress={() =>
               navigation.navigate('View Deck', {
@@ -38,9 +40,10 @@ export default function HomeScreen(props) {
           />
         )}
       />
-      <Button
+      <StyledButton
         title="Add New Deck"
         onPress={() => navigation.navigate('New Deck')}
+        color={'#000'}
       />
     </View>
   );

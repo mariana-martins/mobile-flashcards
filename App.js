@@ -18,7 +18,7 @@ export default function App(props) {
 
   const stackScreenOptions = {
     headerTintColor: 'white',
-    headerStyle: { backgroundColor: 'tomato' },
+    headerStyle: { backgroundColor: '#202040' },
   };
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
