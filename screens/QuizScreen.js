@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { getDeck } from '../utils/api';
+import { StyledView } from '../components/StyledView';
+import { Subtitle, Title } from '../components/StyledText';
+import { StyledButton } from '../components/StyledButton';
 
 export default function QuizScreen(props) {
   const { navigation, route } = props;
@@ -28,50 +31,66 @@ export default function QuizScreen(props) {
 
   if (isLoading) {
     return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
-      </View>
+      <StyledView>
+        <Title>Loading...</Title>
+      </StyledView>
     );
   }
 
   if (pointer < deck.questions.length) {
     const { question, answer } = deck.questions[pointer];
     return (
-      <View style={styles.container}>
-        <Text>
+      <StyledView>
+        <Subtitle>
           {pointer + 1}/{deck.questions.length}
-        </Text>
-        <Text>{viewQuestion ? question : answer}</Text>
-        <Button
+        </Subtitle>
+        <Title>{viewQuestion ? question : answer}</Title>
+        <StyledButton
+          style={styles.viewButton}
           title={`View ${viewQuestion ? 'answer' : 'question'}`}
           onPress={() => setViewQuestion(!viewQuestion)}
         />
-        <Button title="Correct" onPress={() => answerQuestion(true)} />
-        <Button title="Incorrect" onPress={() => answerQuestion(false)} />
-      </View>
+        <StyledButton
+          style={styles.correctButton}
+          title="Correct"
+          onPress={() => answerQuestion(true)}
+        />
+        <StyledButton
+          style={styles.incorrectButton}
+          title="Incorrect"
+          onPress={() => answerQuestion(false)}
+        />
+      </StyledView>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <Text>Quiz finished!!!</Text>
-      <Text>Result:</Text>
-      <Text>Total: {deck.questions.length}</Text>
-      <Text>
+    <StyledView>
+      <Title>Quiz finished!!!</Title>
+      <Subtitle>Result:</Subtitle>
+      <Subtitle>Total: {deck.questions.length}</Subtitle>
+      <Subtitle>
         Correct: {correctAnswers} (
         {((100 * correctAnswers) / deck.questions.length).toFixed(2)} %)
-      </Text>
-      <Button
+      </Subtitle>
+      <StyledButton
         title="Go back to Home"
         onPress={() => navigation.navigate('Home', { timestamp: Date.now() })}
       />
-    </View>
+    </StyledView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+  viewButton: {
+    marginTop: 10,
+  },
+  correctButton: {
+    marginTop: 10,
+    backgroundColor: '#ffbd69',
+  },
+  incorrectButton: {
+    marginTop: 10,
+    backgroundColor: '#ff6363',
   },
 });
