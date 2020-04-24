@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { getDeck } from '../utils/api';
+import { StyledView } from '../components/StyledView';
+import { StyledButton } from '../components/StyledButton';
+import { Title, Subtitle } from '../components/StyledText';
 
 export default function ViewDeckScreen(props) {
   const { navigation, route } = props;
@@ -17,33 +20,38 @@ export default function ViewDeckScreen(props) {
 
   if (isLoading) {
     return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
-      </View>
+      <StyledView>
+        <Title>Loading...</Title>
+      </StyledView>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <Text>{deck && deck.title ? deck.title : 'No name'}</Text>
-      <Text>
+    <StyledView>
+      <Title>{deck && deck.title ? deck.title : 'No name'}</Title>
+      <Subtitle>
         {deck && deck.questions ? `${deck.questions.length} cards` : 'No cards'}
-      </Text>
-      <Button
+      </Subtitle>
+      <StyledButton
+        style={styles.addCardButton}
         title="Add Card"
         onPress={() => navigation.navigate('New Question', { title })}
       />
-      <Button
+      <StyledButton
+        style={styles.startQuizButton}
         title="Start Quiz"
         onPress={() => navigation.navigate('Quiz', { title })}
       />
-    </View>
+    </StyledView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+  addCardButton: {
+    marginTop: 20,
+  },
+  startQuizButton: {
+    backgroundColor: '#ffbd69',
+    marginTop: 20,
   },
 });
