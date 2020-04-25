@@ -4,6 +4,7 @@ import { getDeck } from '../utils/api';
 import { StyledView } from '../components/StyledView';
 import { Subtitle, Title } from '../components/StyledText';
 import { StyledButton } from '../components/StyledButton';
+import { skipTodayLocalNotification } from '../utils/helpers';
 
 export default function QuizScreen(props) {
   const { navigation, route } = props;
@@ -70,6 +71,7 @@ export default function QuizScreen(props) {
     );
   }
 
+  skipTodayLocalNotification();
   return (
     <StyledView>
       <Title>Quiz finished!!!</Title>

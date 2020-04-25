@@ -10,6 +10,7 @@ import NewDeckScreen from './screens/NewDeckScreen';
 import NewQuestionScreen from './screens/NewQuestionScreen';
 import QuizScreen from './screens/QuizScreen';
 import ViewDeckScreen from './screens/ViewDeckScreen';
+import { setLocalNotification } from './utils/helpers';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,7 @@ export default function App(props) {
       }
     }
 
+    setLocalNotification();
     loadResourcesAndDataAsync();
   }, []);
 
