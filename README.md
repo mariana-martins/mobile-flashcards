@@ -2,6 +2,8 @@
 This is a mandatory project to complete Udacity React Nano Degree. 
 The goal here is to implement an App to lets a user to study collections of flashcards.
 
+It was tested on IOS Simulator and using Expo App on my Oneplus 7 that runs Android.
+
 ## How does it work?
 
 The app will allow users to create different categories of flashcards called "decks", 
