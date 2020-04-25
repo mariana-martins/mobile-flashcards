@@ -21,6 +21,12 @@ export default function QuizScreen(props) {
       .finally(() => setLoading(false));
   }, [route.params?.timestamp]);
 
+  const restartQuiz = () => {
+    setViewQuestion(true);
+    setCorrectAnswers(0);
+    setPointer(0);
+  };
+
   const answerQuestion = (answer) => {
     if (answer === true) {
       setCorrectAnswers(correctAnswers + 1);
@@ -46,17 +52,17 @@ export default function QuizScreen(props) {
         </Subtitle>
         <Title>{viewQuestion ? question : answer}</Title>
         <StyledButton
-          style={styles.viewButton}
+          style={styles.baseButton}
           title={`View ${viewQuestion ? 'answer' : 'question'}`}
           onPress={() => setViewQuestion(!viewQuestion)}
         />
         <StyledButton
-          style={styles.correctButton}
+          style={styles.primaryButton}
           title="Correct"
           onPress={() => answerQuestion(true)}
         />
         <StyledButton
-          style={styles.incorrectButton}
+          style={styles.secondaryButton}
           title="Incorrect"
           onPress={() => answerQuestion(false)}
         />
@@ -74,22 +80,30 @@ export default function QuizScreen(props) {
         {((100 * correctAnswers) / deck.questions.length).toFixed(2)} %)
       </Subtitle>
       <StyledButton
-        title="Go back to Home"
-        onPress={() => navigation.navigate('Home', { timestamp: Date.now() })}
+        style={styles.primaryButton}
+        title="Restart Quiz"
+        onPress={restartQuiz}
+      />
+      <StyledButton
+        style={styles.secondaryButton}
+        title="Go back to Deck"
+        onPress={() =>
+          navigation.navigate('View Deck', { timestamp: Date.now() })
+        }
       />
     </StyledView>
   );
 }
 
 const styles = StyleSheet.create({
-  viewButton: {
+  baseButton: {
     marginTop: 10,
   },
-  correctButton: {
+  primaryButton: {
     marginTop: 10,
     backgroundColor: '#ffbd69',
   },
-  incorrectButton: {
+  secondaryButton: {
     marginTop: 10,
     backgroundColor: '#ff6363',
   },
